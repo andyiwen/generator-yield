@@ -1,6 +1,6 @@
-# project
+# <%= name %>
 
-The project documentation
+> The documentation for the *<%= name %>* project
 
 ## Install
 
@@ -20,6 +20,6 @@ Will automatically open your browser at http://0.0.0.0:4000.
 
 ```bash
 # file: .env
-PORT=4000
+PORT=<%= port %>
 LIVERELOAD=true
 ```

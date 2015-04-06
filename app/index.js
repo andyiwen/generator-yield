@@ -4,16 +4,86 @@ let yeoman = require('yeoman-generator')
 let chalk = require('chalk')
 let yosay = require('yosay')
 let mkdir = require('mkdirp')
+let context
 
 module.exports = yeoman.generators.Base.extend({
   initializing: function() {
+    this.log(yosay('ES6, React, Less, Babel, Browserify, Grunt'))
     this.pkg = require('../package.json')
+  },
+
+  prompting: function() {
+    let done = this.async()
+    this.prompt([
+      {
+        type: 'input',
+        name: 'name',
+        message: 'Your project name',
+        store: true
+      }, {
+        type: 'input',
+        name: 'version',
+        message: 'Your project version',
+        default: '0.0.1',
+        store: true
+      }, {
+        type: 'input',
+        name: 'port',
+        message: 'Your development port',
+        default: 3000,
+        store: true
+      }, {
+        type: 'confirm',
+        name: 'livereload',
+        message: 'Use livereload',
+        default: true,
+        store: true
+      }, {
+        type: 'list',
+        name: 'engine',
+        message: 'Which Node.js/iojs version you wanna use?',
+        choices: [
+          'v0.10.36',
+          'v0.11.14',
+          'v0.12.0',
+          'iojs-v1.5.0',
+          'iojs-v1.6.2',
+          'iojs-v1.6.3',
+          'iojs-v1.6.4',
+          'default',
+          'node',
+          'iojs',
+          'stable',
+          'unstable'
+        ],
+        default: 'iojs-v1.6.4',
+        store: true
+      }
+    ], function(answers) {
+      context = answers
+      done()
+    }.bind(this))
+  },
+
+  configuring: {
+    configurations: function() {
+      this.log(chalk.yellow('Setup configurations'))
+      this.template(this.templatePath('env'), this.destinationPath('.env'), context)
+      this.fs.copy(this.templatePath('editorconfig'), this.destinationPath('.editorconfig'))
+      this.fs.copy(this.templatePath('jshintrc'), this.destinationPath('.jshintrc'))
+      this.fs.copy(this.templatePath('gitignore'), this.destinationPath('.gitignore'))
+      this.fs.copy(this.templatePath('gitattributes'), this.destinationPath('.gitattributes'))
+      this.fs.copy(this.templatePath('Gruntfile.js'), this.destinationPath('Gruntfile.js'))
+      this.fs.copy(this.templatePath('nodemon.json'), this.destinationPath('nodemon.json'))
+      this.template(this.templatePath('nvmrc'), this.destinationPath('.nvmrc'), context)
+    }
   },
 
   writing: {
     app: function() {
-      this.fs.copy(this.templatePath('_package.json'), this.destinationPath('package.json'))
-      this.fs.copy(this.templatePath('README.md'), this.destinationPath('README.md'))
+      this.log(chalk.yellow('Copy templates'))
+      this.template(this.templatePath('_package.json'), this.destinationPath('package.json'), context)
+      this.template(this.templatePath('README.md'), this.destinationPath('README.md'), context)
 
       mkdir(this.destinationPath('docs'))
 
@@ -68,21 +138,15 @@ module.exports = yeoman.generators.Base.extend({
 
       mkdir(this.destinationPath('app/views/layouts'))
       this.fs.copy(this.templatePath('views/layouts/default.jade'), this.destinationPath('app/views/layouts/default.jade'))
-    },
-
-    projectfiles: function() {
-      this.fs.copy(this.templatePath('env'), this.destinationPath('.env'))
-      this.fs.copy(this.templatePath('editorconfig'), this.destinationPath('.editorconfig'))
-      this.fs.copy(this.templatePath('jshintrc'), this.destinationPath('.jshintrc'))
-      this.fs.copy(this.templatePath('gitignore'), this.destinationPath('.gitignore'))
-      this.fs.copy(this.templatePath('gitattributes'), this.destinationPath('.gitattributes'))
-      this.fs.copy(this.templatePath('Gruntfile.js'), this.destinationPath('Gruntfile.js'))
-      this.fs.copy(this.templatePath('nodemon.json'), this.destinationPath('nodemon.json'))
-      this.fs.copy(this.templatePath('nvmrc'), this.destinationPath('.nvmrc'))
     }
   },
 
   install: function() {
+    this.log(chalk.yellow('Install dependencies'))
     this.npmInstall()
+  },
+
+  end: function() {
+    this.log(chalk.green('Everything fine'))
   }
 })
