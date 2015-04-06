@@ -1,6 +1,9 @@
 {
   "name": "<%= name %>",
   "version": "<%= version %>",
+  "description": "<%= description %>",
+  "keywords": ["<%= keywords.split(',') %>"],
+  "author": "<%= author %>, <%= author_email %>",
   "main": "dist/server.js",
   "scripts": {
     "start": "grunt dev & nodemon ./dist/cluster.js"

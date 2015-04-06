@@ -22,6 +22,30 @@ module.exports = yeoman.generators.Base.extend({
         store: true
       }, {
         type: 'input',
+        name: 'author',
+        message: 'Your name',
+        default: '',
+        store: true
+      }, {
+        type: 'input',
+        name: 'author_email',
+        message: 'Your email address',
+        default: '',
+        store: true
+      }, {
+        type: 'input',
+        name: 'keywords',
+        message: 'Some keywords about your project',
+        default: '',
+        store: true
+      }, {
+        type: 'input',
+        name: 'description',
+        message: 'Your project description',
+        default: '',
+        store: true
+      }, {
+        type: 'input',
         name: 'version',
         message: 'Your project version',
         default: '0.0.1',
@@ -133,7 +157,7 @@ module.exports = yeoman.generators.Base.extend({
       this.fs.copy(this.templatePath('views/index.jade'), this.destinationPath('app/views/index.jade'))
 
       mkdir(this.destinationPath('app/views/includes'))
-      this.fs.copy(this.templatePath('views/includes/head.jade'), this.destinationPath('app/views/includes/head.jade'))
+      this.template(this.templatePath('views/includes/head.jade'), this.destinationPath('app/views/includes/head.jade'), context)
       this.fs.copy(this.templatePath('views/includes/scripts.jade'), this.destinationPath('app/views/includes/scripts.jade'))
 
       mkdir(this.destinationPath('app/views/layouts'))
