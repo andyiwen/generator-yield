@@ -4,6 +4,7 @@ module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt)
   require('time-grunt')(grunt)
+  require('dotenv').load()
 
   let config = {
     src: './app',
@@ -178,7 +179,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('dev', 'Run dev env', function() {
     let open = require('open')
-    open('http://0.0.0.0:<%= port %>', 'Google Chrome')
+    grunt.log.ok('Open browser at "http://0.0.0.0:' + (process.env.port || 3000) + '"')
+    open('http://0.0.0.0:' + (process.env.port || 3000), 'Google Chrome')
     grunt.task.run(['browserify:watch', 'watch'])
   })
 

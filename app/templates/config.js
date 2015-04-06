@@ -5,7 +5,7 @@ dotenv.load()
 let e = process.env
 
 export default {
-  port: e.PORT || 4000,
+  port: e.PORT || 3000,
   workers: e.WORKERS || 2,
   api: {
     host: e.API_HOST || 'localhost',

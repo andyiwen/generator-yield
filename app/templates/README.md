@@ -14,7 +14,7 @@ npm i
 npm start
 ```
 
-Will automatically open your browser at http://0.0.0.0:4000.
+Will automatically open your browser at http://0.0.0.0:<%= port %>.
 
 ## Environments
 
