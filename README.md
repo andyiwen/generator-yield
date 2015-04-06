@@ -1,4 +1,4 @@
-# generator-generator-yield [![Build Status](https://secure.travis-ci.org/eliias/generator-generator-yield.png?branch=master)](https://travis-ci.org/eliias/generator-generator-yield)
+# generator-yield [![Build Status](https://secure.travis-ci.org/eliias/generator-yield.png?branch=master)](https://travis-ci.org/eliias/generator-yield)
 
 > [Yeoman](http://yeoman.io) generator
 
@@ -23,10 +23,10 @@ npm install -g yo
 
 Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
 
-To install generator-generator-yield from npm, run:
+To install generator-yield from npm, run:
 
 ```bash
-npm install -g generator-generator-yield
+npm install -g generator-yield
 ```
 
 Finally, initiate the generator:
@@ -45,3 +45,6 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 ## License
 
 MIT
+=======
+# generator-yield
+A modern project generator
