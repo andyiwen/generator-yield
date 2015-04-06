@@ -1,0 +1,35 @@
+{
+  "name": "generator-yield",
+  "version": "0.0.1",
+  "description": "A modern project generator",
+  "main": "app/index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:eliias/generator-yield.git"
+  },
+  "keywords": [
+    "ES6",
+    "React",
+    "Less",
+    "Babel",
+    "Browserify",
+    "Grunt",
+    "yeoman-generator"
+  ],
+  "author": "Hannes Moser <hannes@impossiblearts.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eliias/generator-yield/issues"
+  },
+  "homepage": "https://github.com/eliias/generator-yield",
+  "devDependencies": {
+    "chalk": "^1.0.0",
+    "mkdirp": "^0.5.0",
+    "mocha": "^2.2.1",
+    "yeoman-generator": "^0.19.1",
+    "yosay": "^1.0.2"
+  }
+}
