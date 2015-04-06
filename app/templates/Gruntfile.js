@@ -178,7 +178,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('dev', 'Run dev env', function() {
     let open = require('open')
-    open('http://0.0.0.0:4000', 'Google Chrome')
+    open('http://0.0.0.0:3000', 'Google Chrome')
     grunt.task.run(['browserify:watch', 'watch'])
   })
 
